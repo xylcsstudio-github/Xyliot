@@ -3,18 +3,26 @@ By LosefDevelopLab From XYLCS Studio.
 
 (en-us)Install steps：
 1.bash install dependencies
-Debian/Ubuntu:sudo apt install libncurses5-dev
+Debian/Ubuntu:
+sudo apt install libncurses5-dev
+sudo apt install g++ make
 
-Fedora:sudo dnf install ncurses-devel
+Fedora:
+sudo dnf install ncurses-devel
+sudo dnf install g++ make
 
-CentOS/RHEL:sudo yum install ncurses-devel
+CentOS/RHEL:
+sudo yum install ncurses-devel
+sudo yum install g++ make
 
 MacOS:Install Xcode command line tools and ncurses via Homebrew:
 xcode-select --install
 brew install ncurses
 
 
-2.enter bash "./xyliot" to start Xyliot(Before that, please cd to the directory where Xyliot is located.).
+2.enter bash to installation(more precisely, compilation) and start Xyliot(Before that, please cd to the directory where Xyliot is located.)：
+g++ -o xyliot xyliot.cpp -lncursesw
+./xyliot
 
 
 
@@ -28,19 +36,23 @@ Tips3:Although I know this is quite basic, this version can only do it this way.
 
 Debian/Ubuntu:
 sudo apt install libncurses5-dev
+sudo apt install g++ make
 
 Fedora:
 sudo dnf install ncurses-devel
+sudo dnf install g++ make
 
 CentOS/RHEL:
 sudo yum install ncurses-devel
+sudo yum install g++ make
 
 MacOS:
 首先安装Xcode命令行工具，然后通过Homebrew安装ncurses：
 xcode-select --install
 brew install ncurses
 
-2. 进入终端，使用以下命令启动Xyliot（在此之前，请cd到Xyliot所在的目录）：
+2. 进入终端，使用以下命令安装（更确切的来说是编译）启动Xyliot（在此之前，请cd到Xyliot所在的目录）：
+g++ -o xyliot xyliot.cpp -lncursesw
 ./xyliot
 
 提示1：在输入文件名后，您可以写任何内容。按F1保存并退出（您的文件和程序位于同一目录中）。
