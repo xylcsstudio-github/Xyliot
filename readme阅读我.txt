@@ -1,3 +1,6 @@
+Xyliot 1.0.r1.b7
+By LosefDevelopLab From XYLCS Studio.
+
 (en-us)Install steps：
 1.bash install dependencies
 Debian/Ubuntu:sudo apt install libncurses5-dev
