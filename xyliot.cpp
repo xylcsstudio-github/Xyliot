@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <ncurses.h>
+#include <unistd.h> // 用于获取当前工作目录
 
 // 函数：加载文件内容到lines向量
 void loadFile(const std::string& filename, std::vector<std::wstring>& lines) {
@@ -57,8 +58,8 @@ int main() {
     keypad(stdscr, TRUE);
     noecho();
 
-    // 提示用户输入文件名
-    printw("Welcome to Linux Text Editor Xyliot!\n Version 1.0.r1.b8\nTips1:After enter filename, you can write anything. Press F1 to save and exit（Your files and programs are in the same directory）\nTips2:If the file name you input already exists, you can modify that file.\nTips3:Although I know this is quite basic, this version can only do it this way. Move the program anywhere to edit files anywhere.\nTip 4: PgUP and PgDn can move to the top and bottom.\nEnter filename: ");
+    // 提示用户输入文件路径和文件名
+    printw("Welcome to Linux Text Editor Xyliot!\n Version 1.0.r1.b12\nTips1:After enter filename, you can write anything. Press F1 to save and exit（Your files and programs are in the same directory）\nTips2:If the file name you input already exists, you can modify that file.\nTips3: PgUP and PgDn can move to the top and bottom.\nTips4:You can input either absolute or relative file paths when prompted.\nTips5:Move the compiled program to /usr/local/bin so that you can run it from anywhere just by typing its name next time!\nMore please read readme.txt\nEnter file path and filename: ");
     echo();
     char filename[256];
     getstr(filename);
@@ -90,10 +91,11 @@ int main() {
     }
 
     wint_t ch;
-    while (true) {
+    bool exitRequested = false; // 添加一个标志，用于控制循环退出
+    while (!exitRequested) { // 修改退出条件为循环标志为真时退出
         get_wch(&ch);
         if (ch == KEY_F(1)) { // F1 键保存并退出
-            break;
+            exitRequested = true; // 设置循环标志为真，退出循环
         }
 
         int maxY, maxX;
@@ -118,7 +120,8 @@ int main() {
                 break;
             case KEY_DC:
                 if (x < lines[y].size()) {
-                    lines[y].erase(x, 1);
+                    lines[y].erase(x, 
+1);
                     refreshWindow(lines, startLine, startCol, x, y);
                 }
                 break;
